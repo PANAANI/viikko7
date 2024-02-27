@@ -37,8 +37,11 @@ public class App
                 case "3":
                     gifu.listCourses();
                     break;
+                case "4":
+                    gifu.listStudents();
+                    break;
                 case "0":
-                    System.out.println("Lopetetaan");
+                    System.out.println("Kiitos ohjelman käytöstä.");
                     sc.close();
                     break;
                 default:
