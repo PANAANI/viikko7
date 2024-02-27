@@ -18,6 +18,12 @@ public class Gifu {
             System.out.println(i + ") " + courses.get(i).getInformation());
         }
     }
+    public Course getCourse(int id) {
+        return courses.get(id);
+    }
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
     public void addStudent(Student student) {
         students.add(student);
     }
@@ -25,5 +31,30 @@ public class Gifu {
         for (int i = 0; i < students.size(); i++) {
             System.out.println(i + ") " + students.get(i).getInformation());
         }
+    }
+    public Student getStudent(int id) {
+        return students.get(id);
+    }
+    public void enrollStudent(Student student, Course course) {
+        Enrollment enrollment = new Enrollment(student, course);
+        enrollments.add(enrollment);       
+    }
+    public ArrayList<Enrollment> getEnrollments(Course course) {
+        ArrayList<Enrollment> course_enrollments = new ArrayList<>();
+        for (Enrollment enrollment : enrollments) {
+            if (enrollment.getCourse() == course) {
+                course_enrollments.add(enrollment);
+            }
+        }
+        return course_enrollments;
+    }
+    public ArrayList<Enrollment> getEnrollments(Student student) {
+        ArrayList<Enrollment> student_enrollments = new ArrayList<>();
+        for (Enrollment enrollment : enrollments) {
+            if (enrollment.getStudent() == student) {
+                student_enrollments.add(enrollment);
+            }
+        }
+        return student_enrollments;
     }
 }

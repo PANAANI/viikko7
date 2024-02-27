@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class App 
 {
@@ -39,6 +40,54 @@ public class App
                     break;
                 case "4":
                     gifu.listStudents();
+                    break;
+                case "5":
+                    gifu.listCourses();
+                    System.out.println("Mille kurssille haluat lisätä opiskelijan? Syötä kurssin numero:");
+                    Course course_to_enroll_to = gifu.getCourse(Integer.parseInt(sc.nextLine())); 
+                    gifu.listStudents();
+                    System.out.println("Minkä opiskelijan haluat lisätä kurssille? Syötä opiskelijan numero:");
+                    Student student_to_enroll = gifu.getStudent(Integer.parseInt(sc.nextLine()));
+                    gifu.enrollStudent(student_to_enroll, course_to_enroll_to);
+                    break;
+                case "6":
+
+                    gifu.listCourses();
+                    System.out.println("Minkä kurssin haluat arvostella? Syötä kurssin numero:");
+                    Course course_to_grade = gifu.getCourse(Integer.parseInt(sc.nextLine()));
+                    ArrayList<Enrollment> course_to_grade_enrollments = gifu.getEnrollments(course_to_grade);
+                    for (Enrollment enrollment : course_to_grade_enrollments) {
+                        System.out.println("Anna arvosana opiskelijalle " + enrollment.getStudent().getInformation());
+                        int given_grade = Integer.parseInt(sc.nextLine());
+                        enrollment.gradeCourse(given_grade);
+                    }
+                    break;
+                case "7":
+                    gifu.listCourses();
+                    System.out.println("Minkä kurssin opiskelijat haluat listata? Syötä kurssin numero:");
+                    Course course_to_list = gifu.getCourse(Integer.parseInt(sc.nextLine()));
+                    ArrayList<Enrollment> course_to_list_enrollments = gifu.getEnrollments(course_to_list);
+                    for (Enrollment enrollment : course_to_list_enrollments) {
+                        System.out.println(enrollment.getStudent().getInformation() + ", arvosana: " + enrollment.getGrade());
+                    }
+                    break;
+                case "8":
+                    gifu.listStudents();
+                    System.out.println("Minkä opiskelijan arvosanat haluat listata? Syötä opiskelijan numero:");
+                    Student student_to_list = gifu.getStudent(Integer.parseInt(sc.nextLine()));
+                    ArrayList<Enrollment> student_to_list_enrollments = gifu.getEnrollments(student_to_list);
+                    System.out.println("Opiskelijan " + student_to_list.getInformation() + " arvosanat:");
+                    for (Enrollment enrollment : student_to_list_enrollments) {
+                        System.out.println(enrollment.getCourse().getInformation() + ", arvosana: " + enrollment.getGrade());
+                    }
+                    break;
+                case "9":
+                    for (Course course : gifu.getCourses()) {
+                       ArrayList<Enrollment> course_enrollments = gifu.getEnrollments(course);
+                        for (Enrollment enrollment : course_enrollments) {
+                            System.out.println(enrollment.getStudent().getInformation() + ", arvosana: " + enrollment.getGrade());
+                        }
+                    }
                     break;
                 case "0":
                     System.out.println("Kiitos ohjelman käytöstä.");

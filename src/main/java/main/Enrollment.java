@@ -4,10 +4,12 @@ public class Enrollment {
     private int grade = -1;
     private Student student;
     private Course course;
-    public void gradeCourse(int given_grade, Student _student, Course _course) {
-        grade = given_grade;
+    public Enrollment(Student _student, Course _course) {
         student = _student;
         course = _course;
+    }
+    public void gradeCourse(int given_grade) {
+        grade = given_grade;
     }
     public int getGrade() {
         return grade;
