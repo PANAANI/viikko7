@@ -83,7 +83,8 @@ public class App
                     break;
                 case "9":
                     for (Course course : gifu.getCourses()) {
-                       ArrayList<Enrollment> course_enrollments = gifu.getEnrollments(course);
+                        System.out.println(course.getInformation());
+                        ArrayList<Enrollment> course_enrollments = gifu.getEnrollments(course);
                         for (Enrollment enrollment : course_enrollments) {
                             System.out.println(enrollment.getStudent().getInformation() + ", arvosana: " + enrollment.getGrade());
                         }
